@@ -17,7 +17,7 @@ echo -e "${PURPLE}╚════██║██║     ████╔╝██
 ╚══════╝ ╚═════╝ ╚═════╝  ╚═════╝    ╚═╝"
 echo -e "${RESET}"
 echo -e "${CYAN}            Recon Automater${RESET}"
-echo -e "${GRAY}        github.com/yourusername/Sc0ut${RESET}"
+echo -e "${GRAY}        github.com/heshanthenura/sc0ut${RESET}"
 echo
 
 if [ -z "$TARGET" ] || [ -z "$SAVE_FOLDER" ]; then
@@ -66,10 +66,24 @@ fi
 
 echo 
 
+
+CLEAN_TARGET=$(echo "$TARGET" | sed -E 's~https?://~~' | cut -d/ -f1)
+
+
 if command -v nslookup >/dev/null 2>&1; then
-    echo -e "\e[32m[+] Running nslookup on $TARGET\e[0m"
-    nslookup "$TARGET" | sed 's/\x1b\[[0-9;]*m//g' > "$SAVE_FOLDER/nslookup.txt"
+    echo -e "\e[32m[+] Running nslookup on $CLEAN_TARGET\e[0m"
+    nslookup "$CLEAN_TARGET" | sed 's/\x1b\[[0-9;]*m//g' > "$SAVE_FOLDER/nslookup.txt"
     echo -e "\e[32m[+] Output saved to $SAVE_FOLDER/nslookup.txt\e[0m"
 else
     echo -e "\e[31m[!] nslookup is not installed. Skipping...\e[0m"
+fi
+
+echo 
+
+if command -v dig >/dev/null 2>&1; then
+    echo -e "\e[32m[+] Running dig on $CLEAN_TARGET\e[0m"
+    dig "$CLEAN_TARGET" | sed 's/\x1b\[[0-9;]*m//g' > "$SAVE_FOLDER/dig.txt"
+    echo -e "\e[32m[+] Output saved to $SAVE_FOLDER/dig.txt\e[0m"
+else
+    echo -e "\e[31m[!] dig is not installed. Skipping...\e[0m"
 fi
