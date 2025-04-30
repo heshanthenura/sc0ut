@@ -1,0 +1,30 @@
+| Tool       | Purpose                             | Command Example                            |
+|------------|-------------------------------------|---------------------------------------------|
+| `whois`    | Domain registration info            | `whois $TARGET`                             |
+| `dig`      | DNS lookup                          | `dig $TARGET`                               |
+| `nslookup` | DNS records                         | `nslookup $TARGET`                          |
+| `host`     | Reverse lookup                      | `host $TARGET`                              |
+| `theHarvester` | Gather emails/subdomains         | `theHarvester -d $TARGET -b google`         |
+| `sublist3r`| Subdomain discovery                 | `sublist3r -d $TARGET -o $SAVE_FOLDER/subs.txt` |
+
+| Tool     | Purpose                    | Command Example                              |
+|----------|----------------------------|-----------------------------------------------|
+| `nmap`   | Port scan, service detection | `nmap -sV -Pn $TARGET -oN ports.txt`          |
+| `masscan`| Super fast port scanner     | `masscan $TARGET -p1-65535 --rate=1000`       |
+
+| Tool        | Purpose                        | Command Example                                  |
+|-------------|--------------------------------|--------------------------------------------------|
+| `nikto`     | Web server vulnerability scan  | `nikto -h http://$TARGET`                        |
+| `nuclei`    | Fast templated vuln scanner    | `nuclei -u http://$TARGET -o nuclei.txt`         |
+
+| Tool        | Purpose                             | Command Example                                   |
+|-------------|-------------------------------------|---------------------------------------------------|
+| `whatweb`   | Detect web technologies             | `whatweb $TARGET`                                 |
+| `wafw00f`   | Detect WAF                          | `wafw00f $TARGET`                                 |
+| `gobuster`  | Directory brute-forcing             | `gobuster dir -u http://$TARGET -w wordlist.txt`  |
+
+| Tool       | Purpose                        | Command Example                                      |
+|------------|--------------------------------|------------------------------------------------------|
+| `amass`    | Advanced subdomain enum        | `amass enum -d $TARGET -o subs.txt`                 |
+| `httpx`    | Probes HTTP/S (for alive hosts)| `cat subs.txt | httpx -o live.txt`                   |
+| `ffuf`     | Fast web fuzzing               | `ffuf -u http://$TARGET/FUZZ -w wordlist.txt`       |
